@@ -43,7 +43,6 @@ def registrar_trama():
         codigo_lote = input("Código de lote: ")
         codigo_solicitud = input("Código de solicitud: ")
         
-        #Pendiente revisar si lista funciona al correr los procesos e investigar como reemplazar estados
         servicios.append(servicio)
         tipos_seguro.append(tipo_seguro)
         meses_facturacion.append(mes_facturacion)
@@ -69,7 +68,6 @@ def consultar_trama():
     
     while seguir == "s":
         codigo_buscado = input("Ingrese código de lote:")
-        #pendiente de probar
         indice = -1
         
         for i in range (len(codigos_lote)):
@@ -77,7 +75,7 @@ def consultar_trama():
                 indice = i
                 
         if indice >= 0:
-            print("\nTrama encontrada")
+            print("\nTRAMA ENCONTRADA")
             print("Servicio:",servicios[indice])
             print("Tipo de seguro:",tipos_seguro[indice])
             print("Mes de facturación:",meses_facturacion[indice])
@@ -109,7 +107,6 @@ def actualizar_estado():
         for i in range(len(codigos_lote)):
             if codigos_lote[i] == codigo_buscado:
                 indice = i
-        #probar si funciona        
         if indice == -1:
             print("\nTrama no existe")
             return
@@ -117,10 +114,8 @@ def actualizar_estado():
         print("Total de expedientes:",totales_expedientes[indice])
         rechazados = int(input("Cantidad de expedientes rechazados:"))
         
-        #probar calculo
         aceptados = totales_expedientes[indice] - rechazados
         
-        #probar si se actualizan valores
         rechazados_lista[indice] = rechazados
         aceptados_lista[indice] = aceptados
         
@@ -131,11 +126,10 @@ def actualizar_estado():
         else:
             estados[indice]= "PROCESADA"
         
-        print("\nActualizacion guardada correctamente")
+        print("\nACTUALIZACION GUARDADA CORRECTAMENTE")
         print("Expedientes aceptados:",aceptados)
         print("Expedientes rechazados:",rechazados)
         print("Estado actualizado:",estados[indice])
-    #pendiente corregir diagrama proceso 3
         seguir = input("\n¿Desea actualizar otra trama? (s/n)").lower()
 
 def registrar_ticket():
@@ -156,9 +150,9 @@ def registrar_ticket():
             print("\nTrama no requiere ticket. Estado actual:",estados[indice])
         else:
             numero_ticket = input("Ingrese el número de ticket:")
-            #verificar si se actualiza
             tickets_lista[indice] = numero_ticket
             estados[indice] = "TICKET REGISTRADO"
+            print("\nTICKET REGISTRADO CORRECTAMENTE")
             
         seguir = input("\n¿Desea registrar otro ticket? (s/n)").lower()
 
@@ -176,7 +170,6 @@ def reportes():
         total_aceptados = 0
         total_rechazados = 0
         cantidad_tickets = 0
-        #prueba para nuevo acumulador, pendiente agregar a diagrama proceso 5
         tramas_sin_procesar = 0
         
         for i in range(len(codigos_lote)):
@@ -191,13 +184,15 @@ def reportes():
                     total_rechazados = total_rechazados + rechazados_lista[i]
                 if tickets_lista[i] is not None:
                     cantidad_tickets = cantidad_tickets + 1
-                    
+             
+        print("\nREPORTE PARA EL SERVICIO DE",servicio_buscado,"DEL PERIODO",mes_buscado,anio_buscado)            
+        
         if cantidad_tramas == 0:
             print("\nNo existen registros")
             
         else:
-            print("Cantidad de tramas registradas:",cantidad_tramas)
-            print("Cantidad de tramas sin procesar",tramas_sin_procesar)
+            print("\bCantidad de tramas registradas:",cantidad_tramas)
+            print("Cantidad de tramas sin procesar:",tramas_sin_procesar)
             print("Total de expedientes enviados:",total_enviados)
             print("Total expedientes aceptados:",total_aceptados)
             print("Total de expedientes rechazados:",total_rechazados)
