@@ -163,10 +163,48 @@ def registrar_ticket():
         seguir = input("\n¿Desea registrar otro ticket? (s/n)").lower()
 
 def reportes():
-    #proceso 5
-    pass
-
-
+    print("\nREPORTES")
+    seguir = "s"
+    
+    while seguir == "s":
+        servicio_buscado = input("Ingrese el servicio:").strip().upper()
+        mes_buscado = input("Ingrese el mes:").strip().upper()
+        anio_buscado = input("Ingrese el año:").strip().upper()
+        
+        cantidad_tramas = 0
+        total_enviados = 0
+        total_aceptados = 0
+        total_rechazados = 0
+        cantidad_tickets = 0
+        #prueba para nuevo acumulador, pendiente agregar a diagrama proceso 5
+        tramas_sin_procesar = 0
+        
+        for i in range(len(codigos_lote)):
+            if servicios[i] == servicio_buscado and meses_facturacion[i] == mes_buscado and anios[i] == anio_buscado:
+                cantidad_tramas = cantidad_tramas + 1
+                total_enviados = total_enviados + totales_expedientes[i]
+                if aceptados_lista[i] is None:
+                    tramas_sin_procesar = tramas_sin_procesar + 1
+                if aceptados_lista[i] is not None:
+                    total_aceptados = total_aceptados + aceptados_lista[i]
+                if rechazados_lista[i] is not None:
+                    total_rechazados = total_rechazados + rechazados_lista[i]
+                if tickets_lista[i] is not None:
+                    cantidad_tickets = cantidad_tickets + 1
+                    
+        if cantidad_tramas == 0:
+            print("\nNo existen registros")
+            
+        else:
+            print("Cantidad de tramas registradas:",cantidad_tramas)
+            print("Cantidad de tramas sin procesar",tramas_sin_procesar)
+            print("Total de expedientes enviados:",total_enviados)
+            print("Total expedientes aceptados:",total_aceptados)
+            print("Total de expedientes rechazados:",total_rechazados)
+            print("Cantidad de tickets:",cantidad_tickets)
+            
+        seguir = input("\n¿Desea generar otro reporte? (s/n):").lower()
+        
 def menu_principal():
     opcion = ""
     while opcion != "6":
