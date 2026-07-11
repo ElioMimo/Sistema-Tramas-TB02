@@ -61,10 +61,6 @@ def registrar_trama():
         print("Estado: Pendiente de procesamiento")
         
         seguir = input("\n¿Desea registrar otra trama? (s/n): ").lower()
-        if seguir == "s":
-            consultar_trama()
-        else:
-            menu_principal()
             
             
 def consultar_trama():
