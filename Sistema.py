@@ -191,7 +191,7 @@ def reportes():
             print("\nNo existen registros")
             
         else:
-            print("\bCantidad de tramas registradas:",cantidad_tramas)
+            print("\nCantidad de tramas registradas:",cantidad_tramas)
             print("Cantidad de tramas sin procesar:",tramas_sin_procesar)
             print("Total de expedientes enviados:",total_enviados)
             print("Total expedientes aceptados:",total_aceptados)
