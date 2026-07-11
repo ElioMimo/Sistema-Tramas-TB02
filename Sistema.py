@@ -139,8 +139,28 @@ def actualizar_estado():
         seguir = input("\n¿Desea actualizar otra trama? (s/n)").lower()
 
 def registrar_ticket():
-    #proceso 4
-    pass
+    print("\nREGISTRAR TICKET")
+    seguir = "s"
+    
+    while seguir == "s":
+        codigo_buscado = input("Ingrese el código de lote:")
+        
+        indice = -1
+        for i in range(len(codigos_lote)):
+            if codigos_lote[i] == codigo_buscado:
+                indice = i
+                
+        if indice == -1:
+            print("\nTrama no existe")
+        elif estados[indice] != "TICKET PENDIENTE":
+            print("\nTrama no requiere ticket. Estado actual:",estados[indice])
+        else:
+            numero_ticket = input("Ingrese el número de ticket:")
+            #verificar si se actualiza
+            tickets_lista[indice] = numero_ticket
+            estados[indice] = "TICKET REGISTRADO"
+            
+        seguir = input("\n¿Desea registrar otro ticket? (s/n)").lower()
 
 def reportes():
     #proceso 5
