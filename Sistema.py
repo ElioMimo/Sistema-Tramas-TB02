@@ -43,7 +43,7 @@ def registrar_trama():
         codigo_lote = input("Código de lote: ")
         codigo_solicitud = input("Código de solicitud: ")
         
-        #Pendiente revisar si lista funciona al correr el proceso 2. Faltan listas
+        #Pendiente revisar si lista funciona al correr los procesos e investigar como reemplazar estados
         servicios.append(servicio)
         tipos_seguro.append(tipo_seguro)
         meses_facturacion.append(mes_facturacion)
@@ -61,11 +61,46 @@ def registrar_trama():
         print("Estado: Pendiente de procesamiento")
         
         seguir = input("\n¿Desea registrar otra trama? (s/n): ").lower()
+        if seguir == "s":
+            consultar_trama()
+        else:
+            menu_principal()
             
             
 def consultar_trama():
-    #proceso 2
-    pass
+    print("\nCONSULTAR TRAMA")
+    seguir = "s"
+    
+    while seguir == "s":
+        codigo_buscado = input("Ingrese código de lote:")
+        #pendiente de probar
+        indice = -1
+        
+        for i in range (len(codigos_lote)):
+            if codigos_lote[i] == codigo_buscado:
+                indice = i
+                
+        if indice >= 0:
+            print("\nTrama encontrada")
+            print("Servicio:",servicios[indice])
+            print("Tipo de seguro:",tipos_seguro[indice])
+            print("Mes de facturación:",meses_facturacion[indice])
+            print("Año:",anios[indice])
+            print("Total de expedientes:",totales_expedientes[indice])
+            print("Fecha de carga:",fechas_carga[indice])
+            print("Código de lote:",codigos_lote[indice])
+            print("Código de solicitud",codigos_solicitud[indice])
+            print("Rechazados:",rechazados_lista[indice])
+            print("Aceptados:",aceptados_lista[indice])
+            print("Ticket:",tickets_lista[indice])
+            print("Estado:",estados[indice])
+            
+        else:
+            print("Trama no existe")
+            
+        seguir = input("\n¿Desea consultar otra trama? (s/n):").lower()
+      
+        
 
 def actualizar_estado():
     #proceso 3
