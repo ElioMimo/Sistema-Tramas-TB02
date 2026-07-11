@@ -96,11 +96,43 @@ def consultar_trama():
             
         seguir = input("\n¿Desea consultar otra trama? (s/n):").lower()
       
-        
-
+      
 def actualizar_estado():
-    #proceso 3
-    pass
+    print("\nACTUALIZAR ESTADO")
+    codigo_buscado = input("Ingrese código de lote:")
+    
+    indice = -1
+    for i in range(len(codigos_lote)):
+        if codigos_lote[i] == codigo_buscado:
+            indice = i
+    #probar si funciona        
+    if indice == -1:
+        print("\nTrama no existe")
+        return'
+        
+    print("Total de expedientes:",totales_expedientes[indice])
+    rechazados = int(input("Cantidad de expedientes rechazados:"))
+    
+    #probar calculo
+    aceptados = totales_expedientes[indice] - rechazados
+    
+    #probar si se actualizan valores
+    rechazados_lista[indice] = rechazados
+    aceptados_lista[indice] = aceptados
+    
+    necesita_ticket = input("¿La trama requiere ticket? (s/n)").lower()
+    
+    if necesita_ticket = "s":
+        estados[indice] = "TICKET PENDIENTE"
+    else:
+        estados[indice]= "PROCESADA"
+    
+    print("\nActualizacion guardada correctamente")
+    print("Expedientes aceptados:",aceptados)
+    print("Expedientes rechazados:",rechazados)
+    print("Estado actualizado:",estados[indice])
+    #pendiente ver si se implementa bucle para actualizar, revisar diagrama
+    
 
 def registrar_ticket():
     #proceso 4
