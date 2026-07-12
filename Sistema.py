@@ -18,7 +18,7 @@ meses_validos = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO",
 
 
 def registrar_trama():
-    print("\n--- REGISTRAR TRAMA ---")
+    print("\nREGISTRAR TRAMA")
     seguir = "s"
     
     while seguir == "s":
